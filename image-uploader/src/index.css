@@ -1,0 +1,139 @@
+:root {
+    --blue-1: #2f80ed;
+    --gray-2: #4f4f4f;
+    --gray-3: #828282;
+    --gray-4: #bdbdbd;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #333333;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px;
+}
+
+div {
+    position: absolute;
+}
+
+.rectangle {
+    position: absolute;
+    border-radius: 12px;
+}
+
+.rectangle.large-rectangle {
+    width: 402px;
+    height: 469px;
+    left: 519.82px;
+    top: 304.37px;
+    background: #fff;
+
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.rectangle.dropzone-rectangle {
+    width: 338px;
+    height: 218.9px;
+    left: 551.82px;
+    top: 427.97px;
+
+    background: #f6f8fb;
+    border: 1px dashed #97bef4;
+    box-sizing: border-box;
+}
+
+button {
+    position: absolute;
+    background: var(--blue-1);
+    border-radius: 8px;
+}
+
+.choose-button {
+    width: 101px;
+    height: 31.98px;
+    left: 670.64px;
+    top: 705.39px;
+
+    font-family: Noto Sans;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: -0.035em;
+
+    color: #ffffff;
+}
+
+.copy-button {
+    width: 74px;
+    height: 30px;
+    left: 813px;
+    top: 698.03px;
+}
+
+.vector {
+    position: absolute;
+    left: 46.06%;
+    right: 46.02%;
+    top: 42.94%;
+    bottom: 48.88%;
+
+    background: var(--gray-4);
+}
+
+h1 {
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: -0.035em;
+    color: var(--gray-2);
+}
+
+h2 {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.035em;
+    color: var(--gray-4);
+}
+
+h3 {
+    font-size: 10px;
+    line-height: 15px;
+    letter-spacing: -0.035em;
+    color: var(--gray-3);
+}
+
+div.upload {
+    /* Upload your image under h1 */
+    width: 165px;
+    height: 26.99px;
+    left: 645.97px;
+    top: 340.37px;
+}
+
+div.info-section {
+    /* should be h3 */
+    width: 121px;
+    height: 14.99px;
+    left: 660.64px;
+    top: 383.35px;
+
+    text-align: center;
+}
+
+div.dropzone-text {
+    /* should be h2 */
+    width: 166.01px;
+    height: 17.99px;
+    left: 643.17px;
+    top: 589.3px;
+}
+
+div.or-text {
+    /* should be h2 */
+    width: 14px;
+    height: 17.99px;
+    left: 713.82px;
+    top: 665.78px;
+
+    text-align: center;
+}
