@@ -5,7 +5,7 @@ import "./index.css";
 function LargeRectangle(props) {
     return <div className="rectangle large-rectangle">{props.children}</div>;
 }
-
+// sd
 function Hero(props) {
     return (
         <div className="upload">
