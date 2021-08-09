@@ -5,16 +5,12 @@
     --gray-4: #bdbdbd;
 }
 
-#root {
-    position: absolute;
-    top: 20%;
-    left: 25%;
-    width: 50%;
-    height: 60%;
+* {
+    box-sizing: border-box;
 }
 
 body {
-    overflow: hidden;
+    /* overflow: auto; */
     font-family: "Poppins", sans-serif;
     background: #333333;
     font-style: normal;
@@ -26,6 +22,45 @@ body {
 
 div {
     margin: auto;
+}
+
+#root {
+    position: relative;
+    /* top: calc(50vh - 15em); */
+    top: 50vh;
+    margin-top: -15em;
+    width: 50vw;
+    max-width: 24em;
+    min-width: 15em;
+    height: 30em;
+    /* transform: translateY(calc()); */
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    margin: 1.5em auto 0 auto;
+    width: 24em;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #a9a9a9;
+}
+
+@media all and (max-height: 35em) {
+    #root {
+        /* prevent the value of top to be negative */
+        top: 0;
+        margin-top: 1em;
+    }
+
+    footer {
+        position: static;
+        bottom: unset;
+    }
 }
 
 .rectangle {
@@ -45,7 +80,10 @@ div {
     margin-top: 2em;
     background: #f6f8fb;
     border: 1px dashed #97bef4;
-    box-sizing: border-box;
+}
+
+.rectangle.dropzone-rectangle:hover {
+    border-style: solid;
 }
 
 .button {
@@ -54,11 +92,8 @@ div {
 }
 
 .choose-button {
-    /* width: 101px;
-    height: 31.98px; */
-    /* margin-top: 1.5em; */
     padding: 0.5rem 1rem;
-    font-family: Noto Sans;
+    font-family: "Noto Sans", sans-serif;
     font-size: 12px;
     line-height: 16px;
     text-align: center;
@@ -75,6 +110,10 @@ div {
     margin: 2em auto;
     background: var(--gray-4);
     width: max-content;
+}
+
+strong {
+    font-weight: bold;
 }
 
 h1 {

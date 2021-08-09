@@ -61,9 +61,18 @@ function ChooseButton(props) {
     );
 }
 
+function Footer(props) {
+    return (
+        <footer>
+            <p>created by <strong>memert</strong> - devChallenges.io</p>
+        </footer>
+    );
+}
+
 class MainPage extends React.Component {
     render() {
         return (
+            <>
             <LargeRectangle>
                 <Hero text="Upload your image" />
                 <Info text="File should be Jpeg, Png,..." />
@@ -71,6 +80,8 @@ class MainPage extends React.Component {
                 <OrText text="Or" />
                 <ChooseButton />
             </LargeRectangle>
+            <Footer />
+            </>
         );
     }
 }
