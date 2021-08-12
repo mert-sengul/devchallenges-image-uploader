@@ -3,6 +3,9 @@
     --gray-2: #4f4f4f;
     --gray-3: #828282;
     --gray-4: #bdbdbd;
+    --gray-5: #e0e0e0;
+    --gray-6: #f2f2f2;
+    --green-1: #219653;
 }
 
 * {
@@ -26,24 +29,38 @@ div {
 
 #root {
     position: relative;
-    /* top: calc(50vh - 15em); */
     top: 50vh;
     margin-top: -15em;
     width: 50vw;
     max-width: 24em;
     min-width: 15em;
-    height: 30em;
-    /* transform: translateY(calc()); */
+    /* height: 30em; */
 }
+
+/* body,
+html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+} */
+
+/* #wrapper {
+    position: relative;
+    top: 50vh;
+    margin-top: -15em;
+    width: 50vw;
+    max-width: 24em;
+    min-width: 15em;
+} */
 
 footer {
     position: fixed;
     bottom: 0;
     margin: 1.5em auto 0 auto;
-    width: 24em;
+    width: inherit;
+    max-width: inherit;
 
     font-family: "Montserrat", sans-serif;
-
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
@@ -59,6 +76,7 @@ footer {
 
     footer {
         position: static;
+        width: 100%;
         bottom: unset;
     }
 }
@@ -70,7 +88,7 @@ footer {
 .rectangle.large-rectangle {
     width: 100%;
     height: 100%;
-    padding: 5%;
+    padding: 0.5em;
     background: #fff;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -88,22 +106,19 @@ footer {
 
 .button {
     background: var(--blue-1);
+    color: #ffffff;
+    font-family: "Noto Sans", sans-serif;
+    text-align: center;
     border-radius: 8px;
+    border: none;
+    padding: 0.5rem 1rem;
 }
 
 .choose-button {
-    padding: 0.5rem 1rem;
-    font-family: "Noto Sans", sans-serif;
     font-size: 12px;
     line-height: 16px;
-    text-align: center;
 
-    color: #ffffff;
-}
-
-.copy-button {
-    width: 74px;
-    height: 30px;
+    margin-bottom: 2em;
 }
 
 .vector {
@@ -154,4 +169,84 @@ div.dropzone-text {
 
 div.or-text {
     margin: 1em auto;
+}
+
+/* PROGRESS BAR */
+
+.progress-bar {
+    position: relative;
+    height: 0.4em;
+    width: 100%;
+    background: var(--gray-6);
+    border-radius: 0.6em;
+    margin: 2em auto;
+}
+
+.progress-line {
+    position: absolute;
+    height: 100%;
+    max-width: 30%;
+    background: var(--blue-1);
+    border-radius: inherit;
+}
+
+.align-left {
+    text-align: left;
+    margin-left: 0;
+}
+
+/* Final Section */
+
+#checkmark {
+    fill: var(--green-1);
+    margin: 2em auto 0em auto;
+}
+
+.rectangle.image-rectangle {
+    position: relative;
+    width: 80%;
+    margin: 2em auto;
+    max-height: 30em;
+}
+
+.rectangle.link-area {
+    box-sizing: content-box;
+    height: 1.6em;
+    width: 80%;
+    border: 1px solid var(--gray-5);
+    border-right: 0px none;
+    position: relative;
+    background: #f6f8fb;
+}
+
+input[readonly] {
+    border: none;
+    text-align: left;
+    font-size: 0.5em;
+    line-height: 0.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    float: left;
+    width: calc(100% - 11em);
+
+    z-index: 100;
+    position: relative;
+    box-sizing: content-box;
+    padding: unset;
+    margin: 1em 0.3em;
+    left: 0.2em;
+}
+
+.button.copy-button {
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    font-size: 0.5em;
+    line-height: 0.5rem;
+    margin: 0;
+    border-color: inherit;
 }
