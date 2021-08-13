@@ -48,7 +48,7 @@ function Vector(props) {
 
 function Dropzone(props) {
     return (
-        <div className="rectangle dropzone-rectangle">
+        <div className="rectangle dropzone-rectangle" onDrop={(e) => console.log(e)}>
             <Vector src="mountains.svg" />
             <DropzoneText text="Drag & Drop your image here" />
         </div>
@@ -73,7 +73,7 @@ function Footer(props) {
     return (
         <footer>
             <p>
-                created by <strong>memert</strong> - devChallenges.io
+                created by <strong>mert-sengul</strong> - devChallenges.io
             </p>
         </footer>
     );
@@ -148,7 +148,6 @@ function CopyButton(props) {
             type="button"
             className="button copy-button"
             value="Copy Link"
-            
             onClick={(e) => {
                 props.onClick(e);
             }}
@@ -156,17 +155,50 @@ function CopyButton(props) {
     );
 }
 
-function LinkArea(props) {
-    return (
-        <div className="rectangle link-area">
-            <input type="text" readOnly={true} value={props.link} />
-            <CopyButton
-                onClick={(e) => {
-                    console.log(e);
-                }}
-            />
-        </div>
-    );
+const DummyInput = React.forwardRef((props, ref) => (
+    <input
+        type="text"
+        readOnly={true}
+        value={props.value}
+        ref={ref}
+        onDoubleClick={props.onDoubleClick}
+    />
+));
+
+class LinkArea extends React.Component {
+    constructor(props) {
+        super(props);
+        this.textValue = React.createRef();
+        this.copyToClipboard = this.copyToClipboard.bind(this);
+    }
+
+    componentDidMount() {
+        // Scroll back to the start of the text
+        this.textValue.current.selectionEnd = 0;
+    }
+
+    copyToClipboard() {
+        this.textValue.current.select(); // focus to text to inform user that the content copied
+        navigator.clipboard.writeText(this.textValue.current.value);
+    }
+
+    render() {
+        return (
+            <div className="rectangle link-area">
+                <DummyInput
+                    value={this.props.link}
+                    ref={this.textValue}
+                    onDoubleClick={(e) => this.copyToClipboard()}
+                />
+                <CopyButton
+                    onClick={(e) => {
+                        this.copyToClipboard();
+                        // navigator.clipboard.writeText(this.props.link);
+                    }}
+                />
+            </div>
+        );
+    }
 }
 
 class InitialSection extends React.Component {
@@ -207,7 +239,11 @@ class FinalSection extends React.Component {
                 <CheckMark />
                 <Hero text={"Uploaded Successfully!"} />
                 <Image imageURL="./uploaded.jpg" />
-                <LinkArea link={"https://images.yourdomain.com/photo-1496950866446-3254546465834354534354"} />
+                <LinkArea
+                    link={
+                        "https://images.yourdomain.com/photo-1496950866446-3254546465834354534354"
+                    }
+                />
             </LargeRectangle>
         );
     }
@@ -225,16 +261,13 @@ class Page extends React.Component {
     }
 
     submit(e) {
-        console.log("submit");
-        console.log(e);
         this.setState({ submitted: true });
         setTimeout(() => {
             this.uploadConfirmed();
-        }, 500);
+        }, 2000);
     }
 
     uploadConfirmed() {
-        console.log("uploaded");
         this.setState({ uploaded: true });
     }
 
