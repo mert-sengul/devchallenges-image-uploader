@@ -1,0 +1,3 @@
+*.pyc
+**/migrations/*
+local_settings.py
