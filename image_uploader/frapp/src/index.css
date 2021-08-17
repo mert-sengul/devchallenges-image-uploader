@@ -1,0 +1,223 @@
+:root {
+    --blue-1: #2f80ed;
+    --gray-2: #4f4f4f;
+    --gray-3: #828282;
+    --gray-4: #bdbdbd;
+    --gray-5: #e0e0e0;
+    --gray-6: #f2f2f2;
+    --green-1: #219653;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #333333;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: -0.035em;
+}
+
+div {
+    margin: auto;
+}
+
+#root {
+    width: 50vw;
+    max-width: 24em;
+    min-width: 15em;
+}
+
+html, body, #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+footer {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #a9a9a9;
+}
+
+.rectangle {
+    border-radius: 12px;
+}
+
+.rectangle.large-rectangle {
+    width: 100%;
+    height: max-content;
+    padding: 0.5em;
+    background: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.rectangle.dropzone-rectangle {
+    width: 80%;
+    margin-top: 2em;
+    background: #f6f8fb;
+    border: 1px dashed #97bef4;
+}
+
+.rectangle.dropzone-rectangle:hover {
+    border-style: solid;
+}
+
+.button {
+    background: var(--blue-1);
+    color: #ffffff;
+    font-family: "Noto Sans", sans-serif;
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+
+.button:focus {
+    box-shadow: 0 0 0.2em 1px rgba(0, 0, 0, 0.5);
+}
+
+.choose-button {
+    font-size: 12px;
+    line-height: 16px;
+
+    margin-bottom: 2em;
+}
+
+.vector {
+    margin: 2em auto;
+    background: var(--gray-4);
+    width: max-content;
+}
+
+strong {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 18px;
+    line-height: 27px;
+
+    color: var(--gray-2);
+    margin: 1em;
+}
+
+h2 {
+    font-size: 12px;
+    line-height: 18px;
+
+    color: var(--gray-4);
+    margin: 2em auto;
+}
+
+h3 {
+    font-size: 10px;
+    line-height: 15px;
+
+    color: var(--gray-3);
+    margin: 1em;
+}
+
+div.upload {
+    width: 100%;
+}
+
+div.info-section {
+    width: 100%;
+}
+
+div.dropzone-text {
+    margin: 2em auto;
+}
+
+div.or-text {
+    margin: 1em auto;
+}
+
+/* PROGRESS BAR */
+
+.progress-bar {
+    position: relative;
+    height: 0.4em;
+    width: 100%;
+    background: var(--gray-6);
+    border-radius: 0.6em;
+    margin: 2em auto;
+}
+
+.progress-line {
+    position: absolute;
+    height: 100%;
+    max-width: 30%;
+    background: var(--blue-1);
+    border-radius: inherit;
+}
+
+.align-left {
+    text-align: left;
+    margin-left: 0;
+}
+
+/* Final Section */
+
+#checkmark {
+    fill: var(--green-1);
+    margin: 2em auto 0em auto;
+}
+
+.rectangle.image-rectangle {
+    position: relative;
+    width: 80%;
+    margin: 2em auto;
+    max-height: 30em;
+}
+
+.rectangle.link-area {
+    box-sizing: content-box;
+    height: 1.6em;
+    width: 80%;
+    border: 1px solid var(--gray-5);
+    border-right: 0px none;
+    position: relative;
+    background: #f6f8fb;
+    margin: 0 auto 2em auto;
+}
+
+input[readonly] {
+    border: none;
+    text-align: left;
+    font-size: 0.5em;
+    line-height: 0.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    float: left;
+    width: calc(100% - 11em);
+
+    z-index: 100;
+    position: relative;
+    box-sizing: content-box;
+    padding: unset;
+    margin: 1em 0.3em;
+    left: 0.2em;
+}
+
+.button.copy-button {
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    font-size: 0.5em;
+    line-height: 0.5rem;
+    margin: 0;
+    border-color: inherit;
+}

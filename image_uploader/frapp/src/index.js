@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import uploadImage from "./apiClient.js";
 import "./index.css";
+
+const apiClientPromise = new Promise((resolve, reject) => { resolve(true) });
+console.log(apiClientPromise);
 
 function LargeRectangle(props) {
     return <div className="rectangle large-rectangle">{props.children}</div>;
@@ -46,13 +50,95 @@ function Vector(props) {
     );
 }
 
-function Dropzone(props) {
-    return (
-        <div className="rectangle dropzone-rectangle" onDrop={(e) => console.log(e)}>
-            <Vector src="mountains.svg" />
-            <DropzoneText text="Drag & Drop your image here" />
-        </div>
-    );
+function CSRFInput(props) {
+    // only checks for csrfToken, ensure api is loaded before invokation
+    if (window.csrfCookie) {
+        return <input type="hidden" name={props.tokenName} value={window.csrfCookie} />;
+    } else {
+        return null;
+    }
+}
+
+class Dropzone extends React.Component {
+    constructor(props) {
+        super(props);
+        this.fileInput = React.createRef();
+        this.form = React.createRef();
+        this.state = {
+            apiLoaded: false,
+        };
+        this.submitFiles = this.submitFiles.bind(this);
+    }
+    componentDidMount() {
+        apiClientPromise.then(() => {
+            this.setState({ apiLoaded: true });
+        });
+    }
+
+    submitFiles(file_list) {
+        this.props.onSubmit();
+        this.fileInput.current.files = file_list;
+        uploadImage(this.form.current).then(resp => {
+            console.log(resp);
+            this.props.onUploadConfirmed(resp.data.file);
+        })
+
+        // this.form.current.submit();
+    }
+
+    render() {
+        if (this.state.apiLoaded) {
+            // api loaded
+            // const createScheme = window.schema.content.images.create;
+            return (
+                <form
+                    action="/api/images/"
+                    method="POST"
+                    encType="multipart/form-data"
+                    noValidate=""
+                    ref={this.form}
+                >
+                    <CSRFInput tokenName="csrfmiddlewaretoken" />
+                    <input
+                        hidden
+                        name="file"
+                        type="file"
+                        ref={this.fileInput}
+                    />
+                    <DropzoneBody submitFiles={(fl) => { this.submitFiles(fl) }} />
+                </form>
+            );
+        }
+        return null;
+    }
+}
+
+class DropzoneBody extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    preventDefaults = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+    };
+    handleDrop = (e) => {
+        this.preventDefaults(e);
+        const file_list = e.dataTransfer.files;
+        this.props.submitFiles(file_list);
+    };
+    render() {
+        return (
+            <div
+                className="rectangle dropzone-rectangle"
+                onDrop={(e) => this.handleDrop(e)}
+                onDragEnter={(e) => this.preventDefaults(e)}
+                onDragOver={(e) => this.preventDefaults(e)}
+            >
+                <Vector src="mountains.svg" />
+                <DropzoneText text="Drag & Drop your image here" />
+            </div>
+        );
+    }
 }
 
 function ChooseButton(props) {
@@ -208,7 +294,7 @@ class InitialSection extends React.Component {
                 <LargeRectangle>
                     <Hero text="Upload your image" />
                     <Info text="File should be Jpeg, Png,..." />
-                    <Dropzone />
+                    <Dropzone onSubmit={this.props.onSubmit} onUploadConfirmed={this.props.onUploadConfirmed} />
                     <OrText text="Or" />
                     <ChooseButton
                         onClick={(e) => {
@@ -238,11 +324,9 @@ class FinalSection extends React.Component {
             <LargeRectangle>
                 <CheckMark />
                 <Hero text={"Uploaded Successfully!"} />
-                <Image imageURL="./uploaded.jpg" />
+                <Image imageURL={this.props.imageLink} />
                 <LinkArea
-                    link={
-                        "https://images.yourdomain.com/photo-1496950866446-3254546465834354534354"
-                    }
+                    link={this.props.imageLink}
                 />
             </LargeRectangle>
         );
@@ -255,29 +339,27 @@ class Page extends React.Component {
         this.state = {
             submitted: false,
             uploaded: false,
+            imageLink: null,
         };
-        this.submit = this.submit.bind(this);
-        this.uploadConfirmed = this.uploadConfirmed.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onUploadConfirmed = this.onUploadConfirmed.bind(this);
     }
 
-    submit(e) {
+    onSubmit() {
         this.setState({ submitted: true });
-        setTimeout(() => {
-            this.uploadConfirmed();
-        }, 2000);
     }
 
-    uploadConfirmed() {
-        this.setState({ uploaded: true });
+    onUploadConfirmed(imageLink) {
+        this.setState({ uploaded: true, imageLink: imageLink });
     }
 
     render() {
         const currentSection = !this.state.submitted ? (
-            <InitialSection onClick={this.submit} />
+            <InitialSection onSubmit={this.onSubmit} onUploadConfirmed={this.onUploadConfirmed} />
         ) : !this.state.uploaded ? (
             <ProgressSection />
         ) : (
-            <FinalSection />
+            <FinalSection imageLink={this.state.imageLink} />
         );
 
         return (
