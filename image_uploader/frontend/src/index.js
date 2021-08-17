@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import apiClientPromise from "./apiClient.js";
 import "./index.css";
+
+console.log(apiClientPromise);
 
 function LargeRectangle(props) {
     return <div className="rectangle large-rectangle">{props.children}</div>;
@@ -46,13 +49,92 @@ function Vector(props) {
     );
 }
 
-function Dropzone(props) {
-    return (
-        <div className="rectangle dropzone-rectangle" onDrop={(e) => console.log(e)}>
-            <Vector src="mountains.svg" />
-            <DropzoneText text="Drag & Drop your image here" />
-        </div>
-    );
+function CSRFInput(props) {
+    // only checks for csrfToken, ensure api is loaded before invokation
+    if (window.apiAuth.csrfToken) {
+        return <input type="hidden" name={props.tokenName} value={window.apiAuth.csrfToken} />;
+    } else {
+        return null;
+    }
+}
+
+class Dropzone extends React.Component {
+    constructor(props) {
+        super(props);
+        this.fileInput = React.createRef();
+        this.form = React.createRef();
+        this.state = {
+            apiLoaded: false,
+        };
+        this.submitFiles = this.submitFiles.bind(this);
+    }
+    componentDidMount() {
+        apiClientPromise.then(() => {
+            this.setState({ apiLoaded: true });
+        });
+    }
+
+    submitFiles(file_list) {
+        this.fileInput.current.files = file_list;
+        console.log(file_list);
+        console.log(this.form.current);
+        // this.form.current.submit();
+    }
+
+    render() {
+        if (this.state.apiLoaded) {
+            // api loaded
+            const createScheme = window.schema.content.images.create;
+            return (
+                <form
+                    action={new URL(createScheme.url).pathname}
+                    method="POST"
+                    encType="multipart/form-data"
+                    noValidate=""
+                    ref={this.form}
+                >
+                    <CSRFInput tokenName="csrfmiddlewaretoken" />
+                    <input
+                        hidden
+                        name={createScheme.fields[0].name}
+                        type="file"
+                        ref={this.fileInput}
+                    />
+                    <DropzoneBody submitFiles={(fl) => {this.submitFiles(fl)}} />
+                </form>
+            );
+        }
+        return null;
+    }
+}
+
+class DropzoneBody extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    preventDefaults = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+    };
+    handleDrop = (e) => {
+        this.preventDefaults(e);
+        console.log(e);
+        const file_list = e.dataTransfer.files;
+        this.props.submitFiles(file_list);
+    };
+    render() {
+        return (
+            <div
+                className="rectangle dropzone-rectangle"
+                onDrop={(e) => this.handleDrop(e)}
+                onDragEnter={(e) => this.preventDefaults(e)}
+                onDragOver={(e) => this.preventDefaults(e)}
+            >
+                <Vector src="mountains.svg" />
+                <DropzoneText text="Drag & Drop your image here" />               
+            </div>
+        );
+    }
 }
 
 function ChooseButton(props) {
