@@ -76,6 +76,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+# filter out local_settings.removed_MIDDLEWARE
+MIDDLEWARE = list(
+    filter(lambda M: M not in local_settings.removed_MIDDLEWARE, MIDDLEWARE)
+)
+
 
 ROOT_URLCONF = "image_uploader.urls"
 
