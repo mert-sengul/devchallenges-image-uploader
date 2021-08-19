@@ -4,7 +4,7 @@ from .models import Image
 import django.utils.timezone as tz
 import threading
 
-INTERVAL = 6000  # life expectancy of uploaded images, in seconds.
+INTERVAL = 60  # life expectancy of uploaded images, in seconds.
 
 
 def delete_images_task() -> None:
