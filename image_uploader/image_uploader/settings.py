@@ -17,6 +17,27 @@ from . import local_settings
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+FRONTEND_ROOT = os.path.join(BASE_DIR, "frontend")
+FRONTEND_SRC = os.path.join(FRONTEND_ROOT, "src")
+FRONTEND_BUILD = os.path.join(FRONTEND_ROOT, "build")
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [
+    ("frontend", FRONTEND_BUILD),
+    ("js", os.path.join(FRONTEND_BUILD, "static", "js")),
+    ("css", os.path.join(FRONTEND_BUILD, "static", "css")),
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -40,7 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "corsheaders",
+  #  "corsheaders",
     "rest_framework",
     "api",
 ]
@@ -48,25 +69,22 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
+  #  "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-# filter out local_settings.removed_MIDDLEWARE
-MIDDLEWARE = list(
-    filter(lambda M: M not in local_settings.removed_MIDDLEWARE, MIDDLEWARE)
-)
-
 
 ROOT_URLCONF = "image_uploader.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            FRONTEND_BUILD,
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -132,16 +150,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-STATIC_URL = "/static/"
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
-
-FRONTEND_ROOT = os.path.join(BASE_DIR, "frontend")
-FRONTEND_SRC = os.path.join(FRONTEND_ROOT, "src")
-FRONTEND_BUILD = os.path.join(FRONTEND_ROOT, "build")

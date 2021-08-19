@@ -87,7 +87,9 @@ footer {
 .choose-button {
     font-size: 12px;
     line-height: 16px;
-
+    display: block;
+    width: max-content;
+    margin: auto;
     margin-bottom: 2em;
 }
 
@@ -187,6 +189,7 @@ div.or-text {
     border-right: 0px none;
     position: relative;
     background: #f6f8fb;
+    margin: 0 auto 2em auto;
 }
 
 input[readonly] {

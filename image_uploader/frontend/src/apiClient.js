@@ -1,19 +1,14 @@
-const importsPromise = import("coreapi").then((coreapi) => {
-    window.coreapi = coreapi;
-    return import("./schema.js");
-});
+import axios from 'axios';
+const csrfCookieName = "csrftoken";
+const csrfHeaderName = "X-CSRFToken";
+const apiUrl = "http://127.0.0.1:8000/api/images/";
 
-const apiClientPromise = importsPromise.then(initApiClient);
-
-function initApiClient() {
-    return new Promise((resolve, reject) => {
-        window.apiAuth = new window.coreapi.auth.SessionAuthentication({
-            csrfCookieName: "csrftoken",
-            csrfHeaderName: "X-CSRFToken",
-        });
-        window.apiClient = new window.coreapi.Client({ auth: window.apiAuth });
-        resolve(true);
-    });
+export default async function uploadImage(form) {
+    return axios.post(
+        apiUrl, new FormData(form), 
+        {
+            xsrfCookieName: csrfCookieName,
+            xsrfHeaderName: csrfHeaderName,
+        }
+    )
 }
-
-export default apiClientPromise;
