@@ -41,15 +41,18 @@ MEDIA_URL = "/media/"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "4l^tf1(79+5m@tl!rvvjoz3=njj_v53$wgap+tdz6_ifqdv0ld"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
+if DEBUG:
+    from . import local_settings
+else:
+    from . import server_settings as local_settings
 
 ALLOWED_HOSTS = local_settings.ALLOWED_HOSTS.copy()
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = local_settings.SECRET_KEY
 
 # Application definition
 

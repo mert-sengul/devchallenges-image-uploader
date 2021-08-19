@@ -3,3 +3,4 @@
 /image_uploader/image_uploader/local_settings.py
 /image_uploader/static/*
 /image_uploader/media/*
+image_uploader/db.sqlite3
