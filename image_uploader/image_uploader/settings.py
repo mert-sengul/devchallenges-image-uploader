@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from . import local_settings
+# from . import local_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,7 +43,7 @@ MEDIA_URL = "/media/"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 if DEBUG:
     from . import local_settings
 else:

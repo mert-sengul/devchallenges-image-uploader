@@ -1,6 +1,7 @@
 <!-- Please update value in the {}  -->
+🚧 Under Construction 🚧
 
-<h1 align="center">{Image Uploader}</h1>
+<h1 align="center">Image Uploader</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -8,7 +9,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="http://mertsengul.pythonanywhere.com/">
       Demo
     </a>
     <span> | </span>
