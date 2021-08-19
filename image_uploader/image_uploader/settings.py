@@ -50,7 +50,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = local_settings.ALLOWED_HOSTS.copy()
 
-CORS_ALLOWED_ORIGINS = local_settings.CORS_ALLOWED_ORIGINS
 
 # Application definition
 
@@ -61,7 +60,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-  #  "corsheaders",
     "rest_framework",
     "api",
 ]
@@ -69,7 +67,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-  #  "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -100,11 +97,7 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {
-    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #     'rest_framework.authentication.BasicAuthentication',
-    #     # 'rest_framework.authentication.SessionAuthentication',
-    # ]
+   "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
 
 
