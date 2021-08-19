@@ -1,5 +1,5 @@
 <!-- Please update value in the {}  -->
-🚧 Under Construction 🚧
+<h1 align="center">🚧 Under Construction 🚧</h1>
 
 <h1 align="center">Image Uploader</h1>
 
