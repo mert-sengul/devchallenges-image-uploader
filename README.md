@@ -66,7 +66,16 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the given user stories.
 
-<!-- ## How To Use -->
+## How To Use
+
+- Regexp to replace links to the static assets in frontend/build/index.html:
+Find:
+`[^"]*static/([^"]*)`
+
+Replace:
+`{% static '$1' %}`
+
+Don't forget to include 'static'!
 
 <!-- Example: -->
 

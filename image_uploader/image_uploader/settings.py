@@ -41,7 +41,7 @@ MEDIA_URL = "/media/"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     from . import local_settings
