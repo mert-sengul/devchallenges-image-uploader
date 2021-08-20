@@ -93,4 +93,4 @@ $ npm start
 
 ## Contact
 
-- GitHub [@your-username](https://{github.com/mert-sengul})
+- GitHub [@mert-sengul](https://{github.com/mert-sengul})
