@@ -40,7 +40,7 @@
 
 <h2 align="center">🚧 Under Construction 🚧</h2>
 
-![screenshot](https://raw.githubusercontent.com/mertsengul/devchallenges-image-uploader/master/.github/images/Screenshot_Devchallenges.png)
+![screenshot](https://raw.githubusercontent.com/mert-sengul/devchallenges-image-uploader/main/.github/images/Screenshot_Devchallenges.png)
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
