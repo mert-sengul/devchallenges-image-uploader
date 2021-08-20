@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-# from . import local_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,7 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 FRONTEND_ROOT = os.path.join(BASE_DIR, "frontend")
-FRONTEND_SRC = os.path.join(FRONTEND_ROOT, "src")
 FRONTEND_BUILD = os.path.join(FRONTEND_ROOT, "build")
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -44,12 +42,16 @@ MEDIA_URL = "/media/"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 if DEBUG:
     from . import local_settings
 else:
     from . import server_settings as local_settings
 
 ALLOWED_HOSTS = local_settings.ALLOWED_HOSTS.copy()
+
+CORS_ALLOWED_ORIGINS = local_settings.CORS_ALLOWED_ORIGINS.copy()
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = local_settings.SECRET_KEY
@@ -65,7 +67,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "api",
-]
+] + local_settings.INSTALLED_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -77,6 +79,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+MIDDLEWARE = local_settings.INJECT_MIDDLEWARE(MIDDLEWARE)
 
 
 ROOT_URLCONF = "image_uploader.urls"

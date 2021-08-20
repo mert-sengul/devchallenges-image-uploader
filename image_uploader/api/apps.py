@@ -28,5 +28,5 @@ class ApiConfig(AppConfig):
 
         from . import signals
 
-        copy_schema()
+        # copy_schema()
         return super().ready()

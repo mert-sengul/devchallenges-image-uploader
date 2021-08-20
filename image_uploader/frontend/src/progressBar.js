@@ -21,17 +21,18 @@ export default class ProgressBar extends React.Component {
 
     progress() {
         this.setState({ fillerStyles: { ...this.initialStyle } });
-        setTimeout(() => {
+        this.timeoutID = setTimeout(() => {
             this.setState({ fillerStyles: { ...this.progressStyle } });
         }, 50);
     }
     componentDidMount() {
         this.progress();
-        this.timerID = setInterval(this.progress, 1100);
+        this.intervalID = setInterval(this.progress, 1100);
     }
 
     componentWillUnmount() {
-        clearInterval(this.timerID);
+        clearInterval(this.intervalID);
+        clearTimeout(this.timeoutID);
     }
 
     render() {

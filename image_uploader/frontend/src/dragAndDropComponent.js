@@ -19,7 +19,7 @@ export function DragAndDropBody(props) {
             onDragEnter={(e) => preventDefaults(e)}
             onDragOver={(e) => preventDefaults(e)}
         >
-            <Vector src="mountains.svg" />
+            <Vector src="static/frontend/mountains.svg" />
             <DragAndDropText text="Drag & Drop your image here" />
         </div>
     );
