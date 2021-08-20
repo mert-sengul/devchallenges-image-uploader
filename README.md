@@ -38,17 +38,17 @@
 
 ## Overview
 
-<h2 align="center">🚧 Under Construction 🚧</h2>
 <div align="center">
 <img alt="screenshot" src="https://raw.githubusercontent.com/mert-sengul/devchallenges-image-uploader/main/.github/images/Screenshot_Devchallenges.png" />
 </div>
+<h2 align="center">🚧 Under Construction 🚧</h2>
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
 - Where can I see your demo?
 - What was your experience?
 - What have you learned/improved?
 - Your wisdom? :)
-
+<h2 align="center">🚧 Under Construction - End🚧</h2>
 ### Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
