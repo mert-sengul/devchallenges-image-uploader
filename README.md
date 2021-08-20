@@ -39,9 +39,9 @@
 ## Overview
 
 <h2 align="center">🚧 Under Construction 🚧</h2>
-
+<div align="center">
 ![screenshot](https://raw.githubusercontent.com/mert-sengul/devchallenges-image-uploader/main/.github/images/Screenshot_Devchallenges.png)
-
+</div>
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
 - Where can I see your demo?
