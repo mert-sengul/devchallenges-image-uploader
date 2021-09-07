@@ -13,7 +13,7 @@
       Demo hosted at pythonanywhere.com
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://devchallenges.io/solutions/asjEUpBBLhHaB8ijOnS6">
       Solution
     </a>
     <span> | </span>
